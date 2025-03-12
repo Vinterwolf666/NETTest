@@ -1,7 +1,7 @@
 provider "google" {
   credentials = var.credentials # Usa la clave JSON de la cuenta de servicio
   project     = var.project_id
-  region      = "us-central1"
+  region      = "us-east1"
 }
 
 variable "project_id" {
@@ -10,7 +10,7 @@ variable "project_id" {
 
 resource "google_container_cluster" "primary" {
   name     = "my-gke-cluster"
-  location = "us-central1"
+  location = "us-east1"
   enable_autopilot = true
 
   

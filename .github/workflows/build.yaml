@@ -7,7 +7,7 @@ on:
 
 env:
   GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
-  GOOGLE_COMPUTE_ZONE: 'us-central1'
+  GOOGLE_COMPUTE_ZONE: 'us-east1'
   GOOGLE_CLUSTER_NAME: 'spiderops-cluster-1'
   IMAGE_NAME: 'azure_test'
   IMAGE_TAG: ${{ github.sha }}
