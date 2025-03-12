@@ -34,10 +34,14 @@ jobs:
           cd infra  # Asegúrate de que `main.tf` está en esta carpeta
           terraform init
       
+      - name: Create GCP credentials file
+        run: |
+          echo '${{ secrets.GOOGLE_CREDENTIALS }}' > gcp-key.json
+
       - name: Apply Terraform (Create GKE & Artifact Registry)
         run: |
           cd infra
-          terraform apply -auto-approve -var="credentials=${{ secrets.GOOGLE_CREDENTIALS }}"
+          terraform apply -auto-approve -var="credentials=$(cat ../gcp-key.json)"
 
 
   build:
