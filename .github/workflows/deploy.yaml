@@ -3,7 +3,7 @@ name: Deploy to GKE
 on:
   push:
     branches:
-      - main  # O la rama que uses para desplegar
+      - main  # O la rama que uses para desplegar s
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
