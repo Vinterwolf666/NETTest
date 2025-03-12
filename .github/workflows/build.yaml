@@ -3,7 +3,7 @@ name: Build and Deploy to GKE
 on:
   push:
     branches:
-      - master  # Se ejecuta solo en la rama master
+      - master  # O la rama en la que quieras que se dispare el flujo de trabajo
 
 env:
   GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
@@ -19,11 +19,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Authenticate with Google Cloud (Workload Identity Federation)
+      - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
 
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v2
@@ -38,21 +37,20 @@ jobs:
       - name: Apply Terraform (Create GKE & Artifact Registry)
         run: |
           cd infra
-          terraform apply -auto-approve
+          terraform apply -auto-approve -var="credentials=${{ secrets.GOOGLE_CREDENTIALS }}"
 
 
   build:
     runs-on: ubuntu-latest
-    needs: infrastructure  # Espera a que termine la infraestructura
+    needs: infrastructure  # Esperar a que termine la infraestructura
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Authenticate with Google Cloud (Workload Identity Federation)
+      - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
 
       - name: Build Docker image
         run: |
