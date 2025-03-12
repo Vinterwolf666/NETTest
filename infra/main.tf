@@ -11,6 +11,7 @@ variable "project_id" {
 resource "google_container_cluster" "primary" {
   name     = "my-gke-cluster"
   location = "us-central1"
+  enable_autopilot = true
 
   remove_default_node_pool = true
   initial_node_count       = 1
