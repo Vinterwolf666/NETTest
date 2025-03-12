@@ -13,8 +13,8 @@ resource "google_container_cluster" "primary" {
   location = "us-central1"
   enable_autopilot = true
 
-  remove_default_node_pool = true
-  initial_node_count       = 1
+  
+  
 
   node_config {
     machine_type = "e2-medium"
