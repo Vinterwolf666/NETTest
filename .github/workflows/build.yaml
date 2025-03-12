@@ -37,7 +37,8 @@ jobs:
       - name: Apply Terraform (Create GKE & Artifact Registry)
         run: |
           cd infra
-          terraform apply -auto-approve
+          terraform apply -auto-approve -var="credentials=${{ secrets.GOOGLE_CREDENTIALS }}"
+
 
   build:
     runs-on: ubuntu-latest

@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = file("gcp-key.json")  # Usa la clave JSON de la cuenta de servicio
+  credentials = var.credentials # Usa la clave JSON de la cuenta de servicio
   project     = var.project_id
   region      = "us-central1"
 }
