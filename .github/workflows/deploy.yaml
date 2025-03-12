@@ -7,7 +7,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-  GKE_CLUSTER: my-cluster
+  GKE_CLUSTER: spiderops-cluster-1
   GKE_ZONE: us-central1
   IMAGE_NAME: webapp
   REPO_NAME: deployment-repo
