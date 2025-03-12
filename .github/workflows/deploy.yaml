@@ -10,7 +10,7 @@ env:
   GKE_CLUSTER: my-cluster
   GKE_ZONE: us-central1-a
   IMAGE_NAME: webapp
-  REPO_NAME: my-repo
+  REPO_NAME: deployment-repo
 
 jobs:
   build:
