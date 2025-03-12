@@ -8,7 +8,7 @@ on:
 env:
   GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
   GOOGLE_COMPUTE_ZONE: 'us-east1'
-  GOOGLE_CLUSTER_NAME: 'spiderops-cluster-1'
+  GOOGLE_CLUSTER_NAME: 'my-gke-cluster'
   IMAGE_NAME: 'azure_test'
   IMAGE_TAG: ${{ github.sha }}
 
@@ -46,7 +46,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: infrastructure  # Esperar a que termine la infraestructura ss
+    needs: infrastructure  # Esperar a que termine la infraestructura sss
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
